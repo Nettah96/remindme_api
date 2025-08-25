@@ -16,15 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from reminders.views import UserRegisterView
-from .views import home   # <-- import our home view
+from .views import home
 
 urlpatterns = [
-    path('', home, name="home"),   # Root landing page
+    path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('api/', include('reminders.urls')),
     path('api/register/', UserRegisterView.as_view(), name="register"),
