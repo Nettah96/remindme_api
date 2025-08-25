@@ -21,10 +21,12 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from reminders.views import UserRegisterView
+from .views import home   # <-- import our home view
 
 urlpatterns = [
+    path('', home, name="home"),   # Root landing page
     path('admin/', admin.site.urls),
-    path('api/', include('reminders.urls')),   # include app routes
+    path('api/', include('reminders.urls')),
     path('api/register/', UserRegisterView.as_view(), name="register"),
     path('api/token/', TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path('api/token/refresh/', TokenRefreshView.as_view(), name="token_refresh"),
